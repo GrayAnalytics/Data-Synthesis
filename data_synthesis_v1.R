@@ -4,7 +4,6 @@ library(plyr)
 class_list1 <- c('A', 'B')
 class_list2 <- c('Z', 'X')
 class_list3 <- c('I', 'K')
-#sample(class_list1, size = 10, replace = TRUE)
 
 dataset <- data.frame(
 cbind(sample(class_list1, size = 20, replace = TRUE), 
@@ -27,9 +26,9 @@ dataset$var5 <- as.numeric(levels(dataset$var5))[dataset$var5]
 synthesize_data <- function(dataset, number_of_rows){
   
   synthetic_data <- data.frame(matrix(vector(), 0, ncol(dataset), dimnames = list(c(), names(dataset))))
-  distribution_table <- count(dataset, vars = factor_list)
   factor_list <- names(Filter(is.factor, dataset))
   numeric_list <- names(Filter(is.numeric, dataset))
+  distribution_table <- count(dataset, vars = factor_list)
   
   ## checks if the datasets are too unique
   if(max(distribution_table$freq) ==1){
